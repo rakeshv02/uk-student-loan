@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://uk-student-loan.tabutility.com/sitemap.xml
