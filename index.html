@@ -59,11 +59,11 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 
     // Source: gov.uk — 2025/26 thresholds and interest rates
     const PLANS = {
-      plan1:   { name:"Plan 1",       threshold:26900, rate:0.09, interestRate:0.032, writeOff:25, desc:"Started uni before 2012 (England/Wales) or before 2006 (NI)" },
-      plan2:   { name:"Plan 2",       threshold:29385, rate:0.09, interestRate:0.062, writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
-      plan4:   { name:"Plan 4",       threshold:33795, rate:0.09, interestRate:0.032, writeOff:30, desc:"Scottish students who started from 1998 onwards" },
-      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.032, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
-      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.062, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
+      plan1:   { name:"Plan 1",       threshold:26065, rate:0.09, interestRate:0.043, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
+      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.073, writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
+      plan4:   { name:"Plan 4",       threshold:32745, rate:0.09, interestRate:0.043, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
+      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.043, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
+      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.073, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
     };
 
     const fmt = n => "£" + Math.round(n).toLocaleString();
@@ -118,7 +118,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
             <div style={{ textAlign:"center", marginBottom:32 }}>
               <div style={{ fontSize:48, marginBottom:8 }}>🎓</div>
               <h1 style={{ margin:0, fontSize:32, fontWeight:800, color:"#1a1a2e" }}>UK Student Loan Calculator</h1>
-              <p style={{ margin:"8px 0 0", color:"#555", fontSize:16 }}>Plan 1 · Plan 2 · Plan 4 · Plan 5 · Postgraduate — 2024/25</p>
+              <p style={{ margin:"8px 0 0", color:"#555", fontSize:16 }}>Plan 1 · Plan 2 · Plan 4 · Plan 5 · Postgraduate — 2025/26</p>
             </div>
 
             <div style={{ background:"#fff", borderRadius:16, padding:28, boxShadow:"0 4px 24px rgba(0,0,0,0.08)", marginBottom:24 }}>
@@ -204,12 +204,12 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
               </div>
 
               <div style={{ background:"#fff3cd", border:"1px solid #ffc107", borderRadius:12, padding:16, fontSize:13, color:"#664d03" }}>
-                <strong>Note:</strong> Interest rates shown are approximate (2024/25). Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
+                <strong>Note:</strong> Interest rates shown are approximate (2025/26; Plan 2 shown at its maximum RPI+3% band). Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
               </div>
             </>}
 
             <div style={{ background:"#fff", borderRadius:16, padding:24, boxShadow:"0 2px 12px rgba(0,0,0,0.06)", marginTop:24 }}>
-              <h3 style={{ margin:"0 0 16px", fontSize:16, fontWeight:700, color:"#1a1a2e" }}>📋 Plan Quick Reference (2024/25)</h3>
+              <h3 style={{ margin:"0 0 16px", fontSize:16, fontWeight:700, color:"#1a1a2e" }}>📋 Plan Quick Reference (2025/26)</h3>
               <div style={{ overflowX:"auto" }}>
                 <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
                   <thead><tr style={{ background:"#f5f3ff" }}>{["Plan","Threshold","Rate","Interest","Write-off"].map(h=><th key={h} style={{ padding:"10px 12px", textAlign:"left", fontWeight:700 }}>{h}</th>)}</tr></thead>
@@ -285,7 +285,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     <h2 style="font-size:15px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Frequently Asked Questions</h2>
     <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0">
       <div style="font-size:14px;font-weight:600;color:#f1f5f9;margin-bottom:6px">How much will I repay each month?</div>
-      <div style="font-size:13px;color:#94a3b8;line-height:1.5">You repay 9% of income above your plan threshold (6% for postgraduate loans) — e.g. on Plan 2, a £35,000 salary repays about £57/month. Enter your salary above for your exact figure.</div>
+      <div style="font-size:13px;color:#94a3b8;line-height:1.5">You repay 9% of income above your plan threshold (6% for postgraduate loans) — e.g. on Plan 2, a £35,000 salary repays about £49/month. Enter your salary above for your exact figure.</div>
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0">
       <div style="font-size:14px;font-weight:600;color:#f1f5f9;margin-bottom:6px">Will I ever pay off my student loan?</div>
