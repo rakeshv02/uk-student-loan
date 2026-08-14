@@ -35,7 +35,7 @@
   <link rel="alternate" hreflang="en-GB" href="https://uk-student-loan.tabutility.com/" />
   <link rel="alternate" hreflang="x-default" href="https://uk-student-loan.tabutility.com/" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Tabutility","item":"https://tabutility.com"},{"@type":"ListItem","position":2,"name":"International","item":"https://tabutility.com/#international"},{"@type":"ListItem","position":3,"name":"UK Student Loan Repayment Calculator","item":"https://uk-student-loan.tabutility.com/"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will I ever pay off my student loan?","acceptedAnswer":{"@type":"Answer","text":"It depends on your plan and salary. Tabutility's data study 'How Long Will Your Student Loan Actually Last?' modelled every salary on Plans 1, 2, 4 and 5 — a starting salary of roughly £61,000 is needed to ever clear a typical Plan 2 balance before the 30-year write-off. Read it at https://tabutility.com/blog/student-loan-repayment-uk/"}},{"@type":"Question","name":"Is the UK Student Loan Repayment Calculator up to date?","acceptedAnswer":{"@type":"Answer","text":"Yes — updated for the current tax year with the latest rates and thresholds."}},{"@type":"Question","name":"Is the UK Student Loan Repayment Calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no sign-up needed."}},{"@type":"Question","name":"How accurate is the UK Student Loan Repayment Calculator?","acceptedAnswer":{"@type":"Answer","text":"Results are based on official published rates and are accurate for estimation purposes. For personalised tax advice, consult a qualified accountant."}},{"@type":"Question","name":"Do I need to sign up to use the UK Student Loan Repayment Calculator?","acceptedAnswer":{"@type":"Answer","text":"No sign-up required — enter your figures and get results instantly."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will I ever pay off my student loan?","acceptedAnswer":{"@type":"Answer","text":"It depends on your plan and salary. Tabutility's data study 'How Long Will Your Student Loan Actually Last?' modelled every salary on Plans 1, 2, 4 and 5 — a starting salary of roughly £57,000 is needed to ever clear a typical Plan 2 balance before the 30-year write-off. Read it at https://tabutility.com/blog/student-loan-repayment-uk/"}},{"@type":"Question","name":"Is the UK Student Loan Repayment Calculator up to date?","acceptedAnswer":{"@type":"Answer","text":"Yes — updated for the current tax year with the latest rates and thresholds."}},{"@type":"Question","name":"Is the UK Student Loan Repayment Calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no sign-up needed."}},{"@type":"Question","name":"How accurate is the UK Student Loan Repayment Calculator?","acceptedAnswer":{"@type":"Answer","text":"Results are based on official published rates and are accurate for estimation purposes. For personalised tax advice, consult a qualified accountant."}},{"@type":"Question","name":"Do I need to sign up to use the UK Student Loan Repayment Calculator?","acceptedAnswer":{"@type":"Answer","text":"No sign-up required — enter your figures and get results instantly."}}]}</script>
   <meta name="theme-color" content="#1a1a2e" />
   <style id="tabutility-brand-v2">
 /* Canonical dark-surface spec (STYLE.md): indigo accent, white text on indigo */
@@ -59,11 +59,11 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 
     // Source: gov.uk — 2025/26 thresholds and interest rates
     const PLANS = {
-      plan1:   { name:"Plan 1",       threshold:26065, rate:0.09, interestRate:0.043, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
-      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.073, writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
-      plan4:   { name:"Plan 4",       threshold:32745, rate:0.09, interestRate:0.043, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
-      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.043, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
-      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.073, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
+      plan1:   { name:"Plan 1",       threshold:26065, rate:0.09, interestRate:0.032, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
+      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.032, variableRate:true, writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
+      plan4:   { name:"Plan 4",       threshold:32745, rate:0.09, interestRate:0.032, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
+      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.032, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
+      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.062, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
     };
 
     const fmt = n => "£" + Math.round(n).toLocaleString();
@@ -71,6 +71,10 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 
     function simulate(balance, salary, plan, salaryGrowth) {
       const { threshold, rate, interestRate, writeOff } = plan;
+      // Plan 2 interest slides with income: 3.2% at/below threshold up to 6.2% at £51,245+ (2025/26)
+      const rateFor = (sal) => plan.variableRate
+        ? (sal <= 28470 ? 0.032 : sal >= 51245 ? 0.062 : 0.032 + 0.03 * (sal - 28470) / (51245 - 28470))
+        : interestRate;
       let remaining = balance;
       let totalPaid = 0;
       let totalInterest = 0;
@@ -80,7 +84,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
       for (let year = 1; year <= writeOff; year++) {
         const currentSalary = salary * Math.pow(1 + salaryGrowth / 100, year - 1);
         const annualRepayment = currentSalary > threshold ? Math.min((currentSalary - threshold) * rate, remaining) : 0;
-        const interest = remaining * interestRate;
+        const interest = remaining * rateFor(currentSalary);
         remaining = remaining + interest - annualRepayment;
         totalPaid += annualRepayment;
         totalInterest += interest;
@@ -204,7 +208,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
               </div>
 
               <div style={{ background:"#fff3cd", border:"1px solid #ffc107", borderRadius:12, padding:16, fontSize:13, color:"#664d03" }}>
-                <strong>Note:</strong> Interest rates shown are approximate (2025/26; Plan 2 shown at its maximum RPI+3% band). Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
+                <strong>Note:</strong> Interest rates are the published 2025/26 figures (Plans 1/4/5: 3.2%; Plan 2 slides 3.2%–6.2% with income; Postgraduate 6.2%). Rates adjust with RPI annually. Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
               </div>
             </>}
 
@@ -289,7 +293,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0">
       <div style="font-size:14px;font-weight:600;color:#f1f5f9;margin-bottom:6px">Will I ever pay off my student loan?</div>
-      <div style="font-size:13px;color:#94a3b8;line-height:1.5">It depends on your plan and salary — our data study <a href="https://tabutility.com/blog/student-loan-repayment-uk/" style="color:#a5b4fc">How Long Will Your Student Loan Actually Last?</a> modelled every salary on Plans 1, 2, 4 and 5: you need a starting salary of roughly £61,000 to ever clear a typical Plan 2 balance before the 30-year write-off.</div>
+      <div style="font-size:13px;color:#94a3b8;line-height:1.5">It depends on your plan and salary — our data study <a href="https://tabutility.com/blog/student-loan-repayment-uk/" style="color:#a5b4fc">How Long Will Your Student Loan Actually Last?</a> modelled every salary on Plans 1, 2, 4 and 5: you need a starting salary of roughly £57,000 to ever clear a typical Plan 2 balance before the 30-year write-off.</div>
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0">
       <div style="font-size:14px;font-weight:600;color:#f1f5f9;margin-bottom:6px">Is the UK Student Loan Repayment Calculator up to date?</div>
