@@ -60,7 +60,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
     // Source: gov.uk — 2025/26 thresholds and interest rates
     const PLANS = {
       plan1:   { name:"Plan 1",       threshold:26065, rate:0.09, interestRate:0.032, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
-      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.032, variableRate:true, writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
+      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.032, variableRate:true, rateLabel:"3.2\u20136.2% (by income)", writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
       plan4:   { name:"Plan 4",       threshold:32745, rate:0.09, interestRate:0.032, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
       plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.032, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
       postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.062, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
@@ -183,7 +183,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
                     { label:"Loan Balance", value:fmt(result.bal) },
                     { label:"Repayment Threshold", value:fmt(result.plan.threshold)+"/yr", color:"#7c3aed" },
                     { label:"Repayment Rate", value: (result.plan.rate*100)+"%", color:"#7c3aed" },
-                    { label:"Interest Rate", value: (result.plan.interestRate*100).toFixed(1)+"%", color:"#dc2626" },
+                    { label:"Interest Rate", value: result.plan.rateLabel || (result.plan.interestRate*100).toFixed(1)+"%", color:"#dc2626" },
                     { label:"Monthly Repayment Now", value: result.monthlyRepayment > 0 ? fmt(result.monthlyRepayment) : "£0", bold:true },
                     { label:"Total Interest Paid", value:fmt(result.totalInterest), color:"#dc2626" },
                     { label:"Total Cost", value:fmt(result.totalPaid), bold:true, color:"#dc2626", border:true },
@@ -208,7 +208,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
               </div>
 
               <div style={{ background:"#fff3cd", border:"1px solid #ffc107", borderRadius:12, padding:16, fontSize:13, color:"#664d03" }}>
-                <strong>Note:</strong> Interest rates are the published 2025/26 figures (Plans 1/4/5: 3.2%; Plan 2 slides 3.2%–6.2% with income; Postgraduate 6.2%). Rates adjust with RPI annually. Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
+                <strong>Note:</strong> Interest rates are the published 2025/26 figures (Plans 1/4/5: 3.2%; Plan 2 slides 3.2%–6.2% with income; Postgraduate 6.2%). Rates adjust with RPI annually. Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr while current-year thresholds and rates are held constant (a current-rules projection). Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
               </div>
             </>}
 
@@ -223,7 +223,7 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
                         <td style={{ padding:"9px 12px", fontWeight:600, color:"#7c3aed" }}>{p.name}</td>
                         <td style={{ padding:"9px 12px" }}>£{p.threshold.toLocaleString()}</td>
                         <td style={{ padding:"9px 12px" }}>{(p.rate*100)}%</td>
-                        <td style={{ padding:"9px 12px" }}>~{(p.interestRate*100).toFixed(1)}%</td>
+                        <td style={{ padding:"9px 12px" }}>{p.rateLabel ? "~"+p.rateLabel : "~"+(p.interestRate*100).toFixed(1)+"%"}</td>
                         <td style={{ padding:"9px 12px" }}>{p.writeOff} years</td>
                       </tr>
                     ))}
