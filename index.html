@@ -7,7 +7,7 @@
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UK Student Loan Repayment Calculator 2025 – Plan 1, 2, 4 & 5 | Tabutility</title>
+  <title>UK Student Loan Repayment Calculator 2026/27 – Plan 1, 2, 4 & 5 | Tabutility</title>
   <meta name="description" content="Free UK student loan repayment calculator. See monthly repayments, total paid, interest accrued and years to pay off for Plan 1, Plan 2, Plan 4, Plan 5 and." />
   <meta name="keywords" content="UK student loan calculator, plan 2 repayment, plan 5 student loan, student loan repayment, how much student loan repayment, SLC" />
   <link rel="canonical" href="https://uk-student-loan.tabutility.com/" />
@@ -18,7 +18,7 @@
   <script defer src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script defer src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#f5f3ff;}.site-nav{background:#1a1a2e;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}.site-nav a{color:#a5b4fc;text-decoration:none;font-size:14px;font-family:'Segoe UI',Arial,sans-serif;}.nav-brand{color:#fff;font-weight:700;font-size:16px;font-family:'Segoe UI',Arial,sans-serif;}#ad-top,#ad-bottom{text-align:center;padding:4px;background:#fff;}</style>
-  <meta property="og:title" content="UK Student Loan Repayment Calculator 2025 – Plan 1, 2, 4 & 5 | Tabutility"/>
+  <meta property="og:title" content="UK Student Loan Repayment Calculator 2026/27 – Plan 1, 2, 4 & 5 | Tabutility"/>
   <meta property="og:description" content="Free UK student loan repayment calculator. See monthly repayments, total paid, interest accrued and years to pay off for Plan 1, Plan 2, Plan 4, Plan 5 and Postgraduate loans."/>
   <meta property="og:url" content="https://uk-student-loan.tabutility.com/"/>
   <meta property="og:type" content="website"/>
@@ -28,7 +28,7 @@
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:image" content="https://uk-student-loan.tabutility.com/og-image.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="UK Student Loan Repayment Calculator 2025 – Plan 1, 2, 4 & 5 | Tabutility"/>
+  <meta name="twitter:title" content="UK Student Loan Repayment Calculator 2026/27 – Plan 1, 2, 4 & 5 | Tabutility"/>
   <meta name="twitter:description" content="Free UK student loan repayment calculator. See monthly repayments, total paid, interest accrued and years to pay off for Plan 1, Plan 2, Plan 4, Plan 5 and Postgraduate loans."/>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UK Student Loan Repayment Calculator","description":"Plans 1, 2, 4, 5 and Postgrad — repayment thresholds, interest rates and payoff timeline.","url":"https://uk-student-loan.tabutility.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Tabutility","url":"https://tabutility.com"}}</script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
@@ -43,6 +43,7 @@
 nav .brand{color:#fff}
 nav a:hover{color:#818cf8}
 input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
+input[type="number"],select,button{min-height:44px;box-sizing:border-box}
 </style>
 <link rel="dns-prefetch" href="//unpkg.com">
 
@@ -55,13 +56,13 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
     //<![CDATA[
     const { useState } = React;
 
-    // Source: gov.uk — 2025/26 thresholds and interest rates
+    // GOV.UK 2026/27 repayment thresholds; interest checked 24 November 2026.
     const PLANS = {
-      plan1:   { name:"Plan 1",       threshold:26065, rate:0.09, interestRate:0.032, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
-      plan2:   { name:"Plan 2",       threshold:28470, rate:0.09, interestRate:0.032, variableRate:true, rateLabel:"3.2\u20136.2% (by income)", writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
-      plan4:   { name:"Plan 4",       threshold:32745, rate:0.09, interestRate:0.032, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
-      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.032, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
-      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.062, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
+      plan1:   { name:"Plan 1",       threshold:26900, rate:0.09, interestRate:0.041, writeOff:25, desc:"Started uni Sept 2006–2012 (England/Wales); pre-2006 loans cancel at age 65 instead" },
+      plan2:   { name:"Plan 2",       threshold:29385, rate:0.09, interestRate:0.041, variableRate:true, rateLabel:"4.1–6% (income-dependent, capped)", writeOff:30, desc:"Started uni Sept 2012–July 2023 (England/Wales)" },
+      plan4:   { name:"Plan 4",       threshold:33795, rate:0.09, interestRate:0.041, writeOff:30, desc:"Scottish students from 2007 onwards; earlier loans cancel at 65 or 30 yrs, whichever first" },
+      plan5:   { name:"Plan 5",       threshold:25000, rate:0.09, interestRate:0.041, writeOff:40, desc:"Started uni Aug 2023 onwards (England)" },
+      postgrad:{ name:"Postgraduate", threshold:21000, rate:0.06, interestRate:0.06, writeOff:30, desc:"Masters or Doctoral loan (England/Wales)" },
     };
 
     const fmt = n => "£" + Math.round(n).toLocaleString();
@@ -69,9 +70,9 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
 
     function simulate(balance, salary, plan, salaryGrowth) {
       const { threshold, rate, interestRate, writeOff } = plan;
-      // Plan 2 interest slides with income: 3.2% at/below threshold up to 6.2% at £51,245+ (2025/26)
+      // Plan 2: RPI plus up to 3%, subject to the current 6% cap.
       const rateFor = (sal) => plan.variableRate
-        ? (sal <= 28470 ? 0.032 : sal >= 51245 ? 0.062 : 0.032 + 0.03 * (sal - 28470) / (51245 - 28470))
+        ? Math.min(0.06, 0.041 + 0.03 * Math.max(0, Math.min(1, (sal - 29385) / (52885 - 29385))))
         : interestRate;
       let remaining = balance;
       let totalPaid = 0;
@@ -79,11 +80,11 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
       let yearsPaid = 0;
       const yearlyData = [];
 
-      for (let year = 1; year <= writeOff; year++) {
+      for (let year = 1; year <= writeOff && remaining > 0; year++) {
         const currentSalary = salary * Math.pow(1 + salaryGrowth / 100, year - 1);
-        const annualRepayment = currentSalary > threshold ? Math.min((currentSalary - threshold) * rate, remaining) : 0;
         const interest = remaining * rateFor(currentSalary);
-        remaining = remaining + interest - annualRepayment;
+        const annualRepayment = Math.min(Math.max(0, (currentSalary - threshold) * rate), remaining + interest);
+        remaining = Math.max(0, remaining + interest - annualRepayment);
         totalPaid += annualRepayment;
         totalInterest += interest;
         yearlyData.push({ year, salary: currentSalary, repayment: annualRepayment, interest, balance: Math.max(0, remaining) });
@@ -106,7 +107,11 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
         const sal = parseFloat(salary) || 0;
         const bal = parseFloat(balance) || 0;
         const growth = parseFloat(salaryGrowth) || 0;
-        const monthlyRepayment = sal > p.threshold ? ((sal - p.threshold) * p.rate) / 12 : 0;
+        if (![sal, bal, growth].every(Number.isFinite) || sal < 0 || bal < 0 || growth < -100 || growth > 100) {
+          alert('Enter non-negative salary and balance, and salary growth between −100% and 100%.');
+          return;
+        }
+        const monthlyRepayment = bal > 0 && sal > p.threshold ? ((sal - p.threshold) * p.rate) / 12 : 0;
         const sim = simulate(bal, sal, p, growth);
         setResult({ plan: p, sal, bal, monthlyRepayment, ...sim });
       };
@@ -120,7 +125,8 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
             <div style={{ textAlign:"center", marginBottom:32 }}>
               <div style={{ fontSize:48, marginBottom:8 }}>🎓</div>
               <h1 style={{ margin:0, fontSize:32, fontWeight:800, color:"#1a1a2e" }}>UK Student Loan Calculator</h1>
-              <p style={{ margin:"8px 0 0", color:"#555", fontSize:16 }}>Plan 1 · Plan 2 · Plan 4 · Plan 5 · Postgraduate — 2025/26</p>
+              <p style={{ margin:"8px 0 0", color:"#555", fontSize:16 }}>Plan 1 · Plan 2 · Plan 4 · Plan 5 · Postgraduate — 2026/27</p>
+              <p style={{color:"#555",fontSize:13}}>Annualised estimate for one plan. Assumes a full repayment term remains, constant thresholds and current interest rates; not a forecast of future government rates. Existing borrowers must adjust for time already elapsed. <a href="https://www.gov.uk/repaying-your-student-loan/what-you-pay">Current GOV.UK rules</a>.</p>
             </div>
 
             <div style={{ background:"#fff", borderRadius:16, padding:28, boxShadow:"0 4px 24px rgba(0,0,0,0.08)", marginBottom:24 }}>
@@ -162,7 +168,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
             {result && <>
               <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(170px,1fr))", gap:16, marginBottom:24 }}>
                 {[
-                  { label:"Monthly Repayment", value: result.monthlyRepayment > 0 ? fmt(result.monthlyRepayment/12*12/12) + "/mo" : "£0 (below threshold)", color:"#7c3aed", bg:"#faf5ff" },
+                  { label:"Monthly Repayment", value: result.monthlyRepayment > 0 ? fmtD(result.monthlyRepayment) + "/mo" : "£0 (below threshold)", color:"#7c3aed", bg:"#faf5ff" },
                   { label:"Total Repaid", value: fmt(result.totalPaid), color:"#dc2626", bg:"#fff5f5" },
                   { label:"Written Off After", value: result.paidOff ? `Paid off in ${result.yearsPaid} yrs` : `${result.plan.writeOff} years`, color: result.paidOff ? "#059669" : "#d97706", bg: result.paidOff ? "#f0fdf4" : "#fffbeb" },
                   { label:"Amount Written Off", value: result.writtenOff > 0 ? fmt(result.writtenOff) : "£0 (fully paid)", color: result.writtenOff > 0 ? "#059669" : "#7c3aed", bg:"#f0fdf4" },
@@ -174,7 +180,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
                 ))}
               </div>
 
-              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20, marginBottom:24 }}>
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,240px),1fr))", gap:20, marginBottom:24 }}>
                 <div style={{ background:"#fff", borderRadius:16, padding:24, boxShadow:"0 2px 12px rgba(0,0,0,0.06)" }}>
                   <h3 style={{ margin:"0 0 16px", fontSize:16, fontWeight:700, color:"#1a1a2e" }}>Repayment Summary</h3>
                   {[
@@ -183,7 +189,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
                     { label:"Repayment Rate", value: (result.plan.rate*100)+"%", color:"#7c3aed" },
                     { label:"Interest Rate", value: result.plan.rateLabel || (result.plan.interestRate*100).toFixed(1)+"%", color:"#dc2626" },
                     { label:"Monthly Repayment Now", value: result.monthlyRepayment > 0 ? fmt(result.monthlyRepayment) : "£0", bold:true },
-                    { label:"Total Interest Paid", value:fmt(result.totalInterest), color:"#dc2626" },
+                    { label:"Total Interest Accrued", value:fmt(result.totalInterest), color:"#dc2626" },
                     { label:"Total Cost", value:fmt(result.totalPaid), bold:true, color:"#dc2626", border:true },
                   ].map((row,i)=>(
                     <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"9px 0", borderTop:row.border?"2px solid #e9ecef":"1px solid #f1f3f5" }}>
@@ -206,12 +212,12 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
               </div>
 
               <div style={{ background:"#fff3cd", border:"1px solid #ffc107", borderRadius:12, padding:16, fontSize:13, color:"#664d03" }}>
-                <strong>Note:</strong> Interest rates are the published 2025/26 figures (Plans 1/4/5: 3.2%; Plan 2 slides 3.2%–6.2% with income; Postgraduate 6.2%). Rates adjust with RPI annually. Actual rates adjust with RPI/RPI+3% annually. Repayments shown assume current salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr while current-year thresholds and rates are held constant (a current-rules projection). Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
+                <strong>Note:</strong> Repayment thresholds are for 2026/27. Interest checked 24 November 2026: Plans 1/4/5 4.1%, Plan 2 4.1%–6% subject to its cap, Postgraduate 6%. Future rates can change. Repayments shown assume salary grows at {result.sal > 0 ? salaryGrowth : 0}%/yr while current thresholds and rates are held constant. Use <a href="https://www.gov.uk/repaying-your-student-loan" style={{ color:"#664d03" }}>gov.uk</a> for official figures.
               </div>
             </>}
 
             <div style={{ background:"#fff", borderRadius:16, padding:24, boxShadow:"0 2px 12px rgba(0,0,0,0.06)", marginTop:24 }}>
-              <h3 style={{ margin:"0 0 16px", fontSize:16, fontWeight:700, color:"#1a1a2e" }}>📋 Plan Quick Reference (2025/26)</h3>
+              <h3 style={{ margin:"0 0 16px", fontSize:16, fontWeight:700, color:"#1a1a2e" }}>📋 Plan Quick Reference (2026/27)</h3>
               <div style={{ overflowX:"auto" }}>
                 <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
                   <thead><tr style={{ background:"#f5f3ff" }}>{["Plan","Threshold","Rate","Interest","Write-off"].map(h=><th key={h} style={{ padding:"10px 12px", textAlign:"left", fontWeight:700 }}>{h}</th>)}</tr></thead>
@@ -326,7 +332,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
 </script>
 <footer style="background:#1a1a2e;margin-top:48px;padding:28px 24px;text-align:center;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:13px;color:#94a3b8;line-height:1.8">
 <div style="font-weight:700;color:#fff;font-size:15px">⚡ Tabutility</div>
-<div>Free, private, browser-based tools. No sign-up, no tracking.</div>
+<div>Free, browser-based tools. No sign-up. Advertising and analytics are explained in our privacy policy.</div>
 <div style="margin-top:6px"><a href="https://tabutility.com" style="color:#818cf8;font-weight:600;text-decoration:none">All Tools</a> · <a href="https://tabutility.com/blog/" style="color:#94a3b8;text-decoration:none">Blog</a> · <a href="https://tabutility.com/about/" style="color:#94a3b8;text-decoration:none">About</a> · <a href="https://tabutility.com/privacy-policy/" style="color:#94a3b8;text-decoration:none">Privacy</a> · <a href="https://tabutility.com/contact/" style="color:#94a3b8;text-decoration:none">Contact</a></div>
 <div style="margin-top:6px;color:#64748b">© 2026 Tabutility</div>
 
@@ -341,10 +347,10 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
         <h3 style="font-size:1.2rem;font-weight:600;color:#f1f5f9;margin-bottom:16px;">📊 Worked Example</h3>
         <p style="color:#94a3b8;margin:0 0 12px;">Plan 2 loan £50,000, salary £35,000:</p>
         <ul style="list-style:none;padding:0;margin:0;color:#cbd5e1;">
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Repayment threshold: <strong style="color:#f1f5f9;">£27,295/year</strong></li>
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Monthly repayment: <strong style="color:#34d399;">£57</strong> (9% of £7,705 ÷ 12)</li>
-          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Annual repayment: <strong style="color:#34d399;">£693</strong></li>
-          <li style="padding:6px 0;">Loan written off after: <strong style="color:#f1f5f9;">40 years (2063)</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Repayment threshold: <strong style="color:#f1f5f9;">£29,385/year</strong></li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Annualised monthly repayment: <strong style="color:#34d399;">£42.11</strong> (9% of £5,615 ÷ 12)</li>
+          <li style="padding:6px 0;border-bottom:1px solid #1e293b;">Annual repayment: <strong style="color:#34d399;">£505.35</strong></li>
+          <li style="padding:6px 0;">Plan 2 write-off: <strong style="color:#f1f5f9;">30 years from the April repayments first became due</strong></li>
         </ul>
       </div>
 
@@ -365,7 +371,7 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">When do student loan repayments start?</h4>
-        <p style="color:#cbd5e1;margin:0;">Repayments start in the April after you graduate or leave your course, but only when your income exceeds the relevant threshold. For Plan 2 (2025/26): £27,295/year (£2,274/month). Below this, no repayments are taken regardless of how large the loan is.</p>
+        <p style="color:#cbd5e1;margin:0;">Repayments normally start in the April after leaving the course, subject to plan rules and income. For Plan 2 in 2026/27, the annual threshold is £29,385 and the published monthly payroll threshold is £2,448. This calculator uses an annualised estimate, so actual payroll rounding can differ.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">Should I overpay my student loan?</h4>
